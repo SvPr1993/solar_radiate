@@ -1,0 +1,2 @@
+url_solar_activity = ("https://api.openweathermap.org/energy/2.0/solar/interval_data?lat={lat}&lon={lon}&date={"
+                      "date}&interval={interval}&appid={5505122bd13252280d7606b88c367382}")
