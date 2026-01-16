@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5kpar^&t1h^e7s4n^^1glm0p81ubvp-5&d$_18ds2(jlfcoh^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -124,6 +124,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-NASA_API_KEY = 'API KEY'
+URL = 'http://localhost:8001'
 
-#os.getenv('NASA_API_KEY', 'DEMO_KEY'))

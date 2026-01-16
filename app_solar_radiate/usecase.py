@@ -5,10 +5,10 @@ from django.conf import settings
 
 def get_solar_activity(date_obj):
 
-    api_key = settings.NASA_API_KEY
     date_str = date_obj.strftime('%Y-%m-%d')
 
-    url = 'https://services.swpc.noaa.gov/products/noaa-scales.json'
+    url = settings.URL
+
         #f'https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/CME?startDate={date_str}&endDate={date_str}'
 #https://services.swpc.noaa.gov/products/noaa-scales.json
 
