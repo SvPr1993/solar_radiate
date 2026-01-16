@@ -32,7 +32,7 @@ def get_solar_activity(date_obj):
             #    flare_data = {
             #        'w_solar_number': index.get("w_solar_number"),
             #    }
-            flares_info.append(solar_radiate_data)
+            #flares_info.append(solar_radiate_data)
 
             return {
                 'has_data': True,
