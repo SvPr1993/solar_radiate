@@ -1,4 +1,4 @@
-import requests
+import requests, json
 from datetime import datetime, date
 from django.conf import settings
 
@@ -24,14 +24,15 @@ def get_solar_activity(date_obj):
             print(type(data))
             flares_info = []
             for index in data:
-                print(data[index])
-                #Нужно сделать так чтобы отображалось одно значание сегодняшнее, и найти рабочий рабочий API, если совсем нет, то написать самому имитацию API
-            #for key, value in data.items():
-                #print(key, value)
-                #flare_data = {
-                    #'Scale': flare.get('classType', 'N/A'),
-                #}
-                #flares_info.append(flare_data)
+                print("CОЛНЕЧНАЯ АКТИВНОСТЬ ЧИСЛО", data[index])
+                #+Нужно сделать так чтобы отображалось одно значание сегодняшнее, и найти рабочий рабочий API, если совсем нет, то написать самому имитацию API
+            for key, value in data.items():
+                print(key, value)
+            #    data_dict = json.loads(data)
+            #    flare_data = {
+            #        'w_solar_number': index.get("w_solar_number"),
+            #    }
+            #flares_info.append(solar_radiate_data)
 
             return {
                 'has_data': True,
