@@ -24,8 +24,8 @@ def get_solar_activity(date_obj):
             for index in data:
                 print("CОЛНЕЧНАЯ АКТИВНОСТЬ ЧИСЛО", data[index])
                 index_data = {
-                    'begin_time': data[index],
-                    'end_time': data[index],
+                    'begin_time': data.get("start_number"),
+                    'end_time': data.get("end_number"),
                 }
                 flares_info.append(index_data)
                 #+Нужно сделать так чтобы отображалось одно значание сегодняшнее, и найти рабочий рабочий API, если совсем нет, то написать самому имитацию API
