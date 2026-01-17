@@ -4,9 +4,7 @@ from django.conf import settings
 
 
 def get_solar_activity(date_obj):
-
     date_str = date_obj.strftime('%Y-%m-%d')
-
     url = settings.URL
 
         #f'https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/CME?startDate={date_str}&endDate={date_str}'
@@ -25,6 +23,11 @@ def get_solar_activity(date_obj):
             flares_info = []
             for index in data:
                 print("CОЛНЕЧНАЯ АКТИВНОСТЬ ЧИСЛО", data[index])
+                index_data = {
+                    'begin_time': data[index],
+                    'end_time': data[index],
+                }
+                flares_info.append(index_data)
                 #+Нужно сделать так чтобы отображалось одно значание сегодняшнее, и найти рабочий рабочий API, если совсем нет, то написать самому имитацию API
             for key, value in data.items():
                 print(key, value)

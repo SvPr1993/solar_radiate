@@ -73,18 +73,13 @@
 
         {% if solar_data.flares and solar_data.flares_count > 0 %}
             <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
-            {% for flare in solar_data.flares %}
+            {% for index in solar_data.flares %}
                 <div class="flare-card">
-                    <h5>Вспышка класса {{ flare.class_type }}</h5>
-                    <p class="mb-1"><strong>Начало:</strong> {{ flare.begin_time }}</p>
-                    <p class="mb-1"><strong>Пик:</strong> {{ flare.peak_time }}</p>
-                    <p class="mb-1"><strong>Окончание:</strong> {{ flare.end_time }}</p>
-                    <p class="mb-1"><strong>Источник:</strong> {{ flare.source_location }}</p>
-                    <p class="mb-0"><strong>Активный регион:</strong> {{ flare.active_region_num }}</p>
+                <p class="mb-1"><strong>Начало:</strong> {{ index.begin_time }}</p>
+                <p class="mb-1"><strong>Окончание:</strong> {{ index.end_time }}</p>
                 </div>
             {% endfor %}
         {% endif %}
-
         <div class="mt-4">
             <a href="{% url 'index' %}" class="btn btn-outline-primary">
                 ← Назад к поиску

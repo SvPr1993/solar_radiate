@@ -15,7 +15,7 @@ def index(request):
             context = {
                 'form': form,
                 'solar_data': solar_data,
-                'selected_date': selected_date
+                'selected_date': selected_date,
             }
             return render(request, 'result.html', context)
     else:
