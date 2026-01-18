@@ -31,11 +31,6 @@ def get_solar_activity(date_obj):
                 #+Нужно сделать так чтобы отображалось одно значание сегодняшнее, и найти рабочий рабочий API, если совсем нет, то написать самому имитацию API
             for key, value in data.items():
                 print(key, value)
-            #    data_dict = json.loads(data)
-            #    flare_data = {
-            #        'w_solar_number': index.get("w_solar_number"),
-            #    }
-            #flares_info.append(solar_radiate_data)
 
             return {
                 'has_data': True,
