@@ -14,7 +14,6 @@ def get_solar_activity(date_obj):
         response = requests.get(url, timeout=10)
         print(url)
         print(date_str)
-        #print(response.json())
         response.raise_for_status()
         data = response.json()
 
