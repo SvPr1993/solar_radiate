@@ -124,5 +124,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-URL = 'http://localhost:8001'
+API_SERVICE_URL = 'http://localhost:8001'
 
