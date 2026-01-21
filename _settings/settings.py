@@ -126,3 +126,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 API_SERVICE_URL = 'http://localhost:8001'
 
+API_SERVICE_URL_2 = 'https://services.swpc.noaa.gov/products/noaa-scales.json'
+

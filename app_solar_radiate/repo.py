@@ -10,8 +10,6 @@ def get_solar_activity_repo(date_str):
 
     try:
         response = requests.get(url, timeout=5)
-        print(url)
-        print(date_str)
         response.raise_for_status()
         data = response.json()
 
