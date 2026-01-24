@@ -85,7 +85,7 @@
     {% for key, value in solar_data.flares_second.items %}
         <div class="flare-card">
             <p class="mb-1"><strong>Начало:</strong> {{ value.MinorProb }}</p>
-            <p class="mb-1"><strong>Окончание:</strong> {{ value.MinorProb }}</p>
+            <p class="mb-1"><strong>Окончание:</strong> {{ value.MajorProb }}</p>
         </div>
     {% endfor %}
 {% endif %}
