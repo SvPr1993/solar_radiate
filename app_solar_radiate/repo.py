@@ -36,8 +36,8 @@ def get_solar_activity_repo_second_api(date_str):
         response.raise_for_status()
         data = response.json()
 
-        for key, item in data.items():
-            r_data = item["R"]
+        for key, value in data.items():
+            r_data = value["R"]
             flares_info[key] = {
                 "MinorProb": r_data.get("MinorProb"),
                 "MajorProb": r_data.get("MajorProb")

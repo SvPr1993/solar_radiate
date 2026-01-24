@@ -6,6 +6,7 @@ from app_solar_radiate.repo import get_solar_activity_repo, get_solar_activity_r
 def get_solar_activity_usecase(date_obj):
     date_str = date_obj.strftime('%Y-%m-%d')
     flares_info = get_solar_activity_repo(date_str)
+
     if len(flares_info) > 0:
         return {
             'has_data': True,
@@ -17,13 +18,14 @@ def get_solar_activity_usecase(date_obj):
 
     flares_info_second = get_solar_activity_repo_second_api(date_str)
     print(flares_info_second)
+    print(type(flares_info_second))
 
     if flares_info_second and len(flares_info_second) > 0:
         return {
             'has_data': True,
             'date': date_str,
-            'flares_count': len(flares_info_second),
-            'flares': flares_info_second,
+            'flares_count_second': len(flares_info_second),
+            'flares_second': flares_info_second,
             'message': f'Найдено {len(flares_info_second)} солнечных вспышек (из альтернативного источника)'
         }
         return get_solar_activity_repo_second_api(date_str)

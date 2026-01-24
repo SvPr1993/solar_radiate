@@ -71,15 +71,24 @@
             </div>
         {% endif %}
 
-        {% if solar_data.flares and solar_data.flares_count > 0 %}
-            <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
-            {% for index in solar_data.flares %}
-                <div class="flare-card">
-                <p class="mb-1"><strong>Начало:</strong> {{ index.begin_time }}</p>
-                <p class="mb-1"><strong>Окончание:</strong> {{ index.end_time}}</p>
-                </div>
-            {% endfor %}
-        {% endif %}
+{% if solar_data.flares and solar_data.flares_count > 0 %}
+    <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
+    {% for index in solar_data.flares %}
+        <div class="flare-card">
+            <p class="mb-1"><strong>Начало:</strong> {{ index.begin_time }}</p>
+            <p class="mb-1"><strong>Окончание:</strong> {{ index.end_time}}</p>
+        </div>
+    {% endfor %}
+{% endif %}
+{% if solar_data.flares_second and solar_data.flares_count_second > 0 %}
+    <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
+    {% for key, value in solar_data.flares_second.items %}
+        <div class="flare-card">
+            <p class="mb-1"><strong>Начало:</strong> {{ value.MinorProb }}</p>
+            <p class="mb-1"><strong>Окончание:</strong> {{ value.MinorProb }}</p>
+        </div>
+    {% endfor %}
+{% endif %}
         <div class="mt-4">
             <a href="{% url 'index' %}" class="btn btn-outline-primary">
                 ← Назад к поиску
