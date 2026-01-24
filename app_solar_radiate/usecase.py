@@ -17,8 +17,6 @@ def get_solar_activity_usecase(date_obj):
         }
 
     flares_info_second = get_solar_activity_repo_second_api(date_str)
-    print(flares_info_second)
-    print(type(flares_info_second))
 
     if flares_info_second and len(flares_info_second) > 0:
         return {
@@ -29,8 +27,14 @@ def get_solar_activity_usecase(date_obj):
             'message': f'Найдено {len(flares_info_second)} солнечных вспышек (из альтернативного источника)'
         }
         return get_solar_activity_repo_second_api(date_str)
+
     else:
-        print("Error")
+        return {
+            'has_data': False,
+            'date': date_str,
+            'error': 'Сервис не работает.',
+            'message': 'Данные о солнечной активности сейчас не доступны.'
+        }
 
 
 
