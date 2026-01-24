@@ -75,8 +75,8 @@
             <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
             {% for index in solar_data.flares %}
                 <div class="flare-card">
-                <p class="mb-1"><strong>Начало:</strong> {{ index.title }}</p>
-                <p class="mb-1"><strong>Окончание:</strong> {{ index.title}}</p>
+                <p class="mb-1"><strong>Начало:</strong> {{ index.begin_time }}</p>
+                <p class="mb-1"><strong>Окончание:</strong> {{ index.end_time}}</p>
                 </div>
             {% endfor %}
         {% endif %}
