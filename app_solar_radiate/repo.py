@@ -80,8 +80,9 @@ def api_service_1(date_str):
                     'end_time': data.get("end_number"),
                 }
                 flares_info.append(index_data)
+                json_data = json.dumps(flares_info)
 
-                return flares_info
+                return json_data
 
     except requests.exceptions.RequestException as e:
         return flares_info
@@ -102,7 +103,10 @@ def api_service_2(date_str):
                 "MinorProb": r_data.get("MinorProb"),
                 "MajorProb": r_data.get("MajorProb")
             }
-        return flares_info
+
+        json_data = json.dumps(flares_info)
+        print(json_data)
+        return json_data
 
     except requests.exceptions.RequestException as e:
         return flares_info
