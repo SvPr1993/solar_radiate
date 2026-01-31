@@ -12,4 +12,6 @@
 
 [Получение солнечной активности в определенную дату.](https://github.com/SvPr1993/solar_radiate_api)
 
+## Внешний вид приложения
+
 <img src=templates/img/ScreenshotСолнечнаяактивность.png/>
