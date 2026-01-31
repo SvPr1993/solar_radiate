@@ -2,9 +2,16 @@ import json
 import requests
 from contextlib import contextmanager
 from django.conf import settings
+from datetime import datetime
 
 
-def get_solar_activity_repo(date_str):
+def date_to_string(date_obj):
+    #Конвертирует объект даты в строку формата YYYY-MM-DD
+    return date_obj.strftime('%Y-%m-%d')
+
+
+def get_solar_activity_repo(date_obj):
+    date_str = date_to_string(date_obj)
     url = settings.API_SERVICE_URL
     flares_info = []
 
@@ -27,7 +34,8 @@ def get_solar_activity_repo(date_str):
         return flares_info
 
 
-def get_solar_activity_repo_second_api(date_str):
+def get_solar_activity_repo_second_api(date_obj):
+    date_str = date_to_string(date_obj)
     url = settings.API_SERVICE_URL_2
     flares_info = {}
 
@@ -48,12 +56,13 @@ def get_solar_activity_repo_second_api(date_str):
         return flares_info
 
 
-def get_solar_activity_data(date_str):
-    data = api_service_1(date_str)
+def get_solar_activity_data(date_obj):
+    date_str = date_to_string(date_obj)
+    data = api_service_1(date_obj)
     if len(data) > 0:
         print("54 строка", type(data))
         return data, False
-    data = api_service_2(date_str)
+    data = api_service_2(date_obj)
     if len(data) > 0:
         print("58 строка", type(data))
         return data, False
@@ -61,10 +70,9 @@ def get_solar_activity_data(date_str):
         print("61 строка", type(data))
         return data, True
 
-#Сделать так, чтобы date_str использовалось в функциях.
-#Нужно сделать чтобы в usecase возвращались в одном формате, привести данные к одному формату, определить этот тип данных и сделать
-#Почитать про интерфесы
-def api_service_1(date_str):
+
+def api_service_1(date_obj):
+    date_str = date_to_string(date_obj)
     url = settings.API_SERVICE_URL
     flares_info = []
 
@@ -88,7 +96,8 @@ def api_service_1(date_str):
         return flares_info
 
 
-def api_service_2(date_str):
+def api_service_2(date_obj):
+    date_str = date_to_string(date_obj)
     url = settings.API_SERVICE_URL_2
     flares_info = {}
 
@@ -104,9 +113,8 @@ def api_service_2(date_str):
                 "MajorProb": r_data.get("MajorProb")
             }
 
-        json_data = json.dumps(flares_info)
-        print(json_data)
-        return json_data
+        json_flares_info = json.dumps(flares_info)
+        return json_flares_info
 
     except requests.exceptions.RequestException as e:
         return flares_info

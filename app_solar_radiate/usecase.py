@@ -1,12 +1,9 @@
-from datetime import datetime, date
 from django.conf import settings
-from app_solar_radiate.repo import get_solar_activity_repo, get_solar_activity_repo_second_api, get_solar_activity_data
+from app_solar_radiate.repo import get_solar_activity_repo, get_solar_activity_repo_second_api, get_solar_activity_data, api_service_1
 
 
 def get_solar_activity_usecase(date_obj):
-    date_str = date_obj.strftime('%Y-%m-%d')
-    #flares_info = get_solar_activity_repo(date_str)
-    new_data = get_solar_activity_data(date_str)
+    new_data = get_solar_activity_data(date_obj)
     return new_data
 
 #    if len(flares_info) > 0:
