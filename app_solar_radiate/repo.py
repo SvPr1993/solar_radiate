@@ -5,6 +5,7 @@ from datetime import datetime
 
 #Сделать так чтобы данные получались
 #Сделать интерфейс между слоями usecase и repo с помощью нейросети
+#
 
 class SolarActivityRepo:
         def date_to_string(self, date_obj):
