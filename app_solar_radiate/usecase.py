@@ -1,9 +1,9 @@
-from django.conf import settings
-from app_solar_radiate.repo import get_solar_activity_repo, get_solar_activity_repo_second_api, get_solar_activity_data, api_service_1
+#from django.conf import settings
 
 
-def get_solar_activity_usecase(date_obj):
-    new_data = get_solar_activity_data(date_obj)
+
+def get_solar_activity_usecase(date_obj, repo):
+    new_data = repo.get_solar_activity_data(date_obj)
     return new_data
 
 #    if len(flares_info) > 0:
