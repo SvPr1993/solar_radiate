@@ -15,5 +15,3 @@
 ## Внешний вид приложения
 
 <img src=templates/img/ScreenshotСолнечнаяактивность.png/>
-<img src=templates/img/ScreenshotСолнечнаяактивность1.png/>
-<img src=templates/img/ScreenshotСолнечнаяактивность2.png/>
