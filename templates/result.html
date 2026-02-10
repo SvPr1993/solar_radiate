@@ -71,12 +71,12 @@
             </div>
         {% endif %}
 
-{% if solar_data.flares and solar_data.flares_count > 0 %}
+{% if solar_data.has_data and solar_data.flares and solar_data.flares_count > 0 %}
     <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
-    {% for index in solar_data.flares %}
+    {% for item in solar_data.flares %}
         <div class="flare-card">
-            <p class="mb-1"><strong>Начало:</strong> {{ index.begin_time }}</p>
-            <p class="mb-1"><strong>Окончание:</strong> {{ index.end_time}}</p>
+            <p class="mb-1"><strong>Начало:</strong> {{ item.begin_time }}</p>
+            <p class="mb-1"><strong>Окончание:</strong> {{ item.end_time }}</p>
         </div>
     {% endfor %}
 {% endif %}

@@ -1,41 +1,21 @@
-#from django.conf import settings
+from datetime import datetime, date
 
 
+def get_solar_activity_usecase(date_input, repo):
 
-def get_solar_activity_usecase(date_obj, repo):
-    new_data = repo.get_solar_activity_data(date_obj)
-    return new_data
+    # Преобразуем date в datetime, если нужно
+    if isinstance(date_input, date):
+        date_obj = datetime.combine(date_input, datetime.min.time())
+    elif isinstance(date_input, datetime):
+        date_obj = date_input
+    else:
+        raise ValueError("date_input должен быть объектом date или datetime")
 
-#    if len(flares_info) > 0:
-#        return {
-#            'has_data': True,
-#            'date': date_str,
-#            'flares_count': len(flares_info),
-#            'flares': flares_info,
-#            'message': f'Найдено {len(flares_info)} солнечных вспышек'
-#        }
-#
-#    flares_info_second = get_solar_activity_repo_second_api(date_str)
-#
-#    if flares_info_second and len(flares_info_second) > 0:
-#        return {
-#            'has_data': True,
-#            'date': date_str,
-#            'flares_count_second': len(flares_info_second),
-#            'flares_second': flares_info_second,
-#           'message': f'Найдено {len(flares_info_second)} солнечных вспышек (из альтернативного источника)'
-#       }
-#       return get_solar_activity_repo_second_api(date_str)
+    data = repo.get_solar_activity_data(date_obj)
 
-#    else:
-#        return {
-#            'has_data': False,
-#            'date': date_str,
-#            'error': 'Сервис не работает.',
-#            'message': 'Данные о солнечной активности сейчас не доступны.'
-#        }
+    return data
 
-
-#f'https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/CME?startDate={date_str}&endDate={date_str}'
-#https://services.swpc.noaa.gov/products/noaa-scales.json
-
+#Сделать dto и прокинуть через view, сначала сделать через фейк репозиторий, если получилось, то прокинуть оригинал репозитория
+#Прочитать про TypeHinting в питоне
+#Нужно через нейросеть подключить репозиторий с помощью интерфейса через протокол, обязательное уточнение, что юзкейс подключается без интерфейса
+#Нужно сделать структуру похожу на оригинальный репо, сделать чтобы данные было похожи
