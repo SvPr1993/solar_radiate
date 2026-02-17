@@ -33,16 +33,13 @@
             color: #666;
             font-style: italic;
         }
-        .dict-key {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="text-center mb-4">
             <div class="solar-icon">
-                {% if solar_data.flares_count_second > 0 %}
+                {% if solar_data.flares_count > 0 %}
                     🔥
                 {% else %}
                     ☀️
@@ -53,52 +50,45 @@
         </div>
 
         <div class="alert
-            {% if solar_data.flares_count_second > 0 %}
+            {% if solar_data.flares_count > 0 %}
                 alert-warning
             {% else %}
                 alert-info
             {% endif %}">
             <h4 class="alert-heading">
                 {% if solar_data.has_data %}
-                    Найдено {{ solar_data.flares_count_second }} солнечных вспышек
+                    {{ solar_data.message }}
                 {% else %}
-                    Нет данных за выбранную дату
+                    {{ solar_data.message }}
                 {% endif %}
             </h4>
-            {% if solar_data.date %}
-                <p class="mb-0">Дата в источнике: {{ solar_data.date }}</p>
-            {% endif %}
         </div>
 
-        {% if solar_data.flares_second %}
-            <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
-            {% if solar_data.flares_second.items %}
-                {# flares_second — словарь верхнего уровня #}
-                {% for key, value in solar_data.flares_second.items %}
-                    <div class="flare-card">
-                        <p><span class="dict-key">{{ key }}:</span> {{ value }}</p>
-                    </div>
-                {% endfor %}
-            {% else %}
-                {# flares_second — список (или другая итерируемая структура) #}
-                {% for flare in solar_data.flares_second %}
-                    <div class="flare-card">
-                        {% if flare.items %}
-                            {# Элемент списка — словарь #}
-                            {% for k, v in flare.items %}
-                                <p><span class="dict-key">{{ k }}:</span> {{ v }}</p>
-                            {% endfor %}
-                        {% else %}
-                            {# Элемент списка — простое значение #}
-                            <p>{{ flare }}</p>
-                        {% endif %}
-                    </div>
-                {% empty %}
-                    <p class="no-flares">Нет данных о вспышках</p>
-                {% endfor %}
-            {% endif %}
+        {% if solar_data.error %}
+            <div class="alert alert-danger">
+                <h5>Ошибка:</h5>
+                <p>{{ solar_data.error }}</p>
+            </div>
         {% endif %}
 
+{% if solar_data.has_data and solar_data.flares and solar_data.flares_count > 0 %}
+    <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
+    {% for item in solar_data.flares %}
+        <div class="flare-card">
+            <p class="mb-1"><strong>Начало:</strong> {{ item.begin_time }}</p>
+            <p class="mb-1"><strong>Окончание:</strong> {{ item.end_time }}</p>
+        </div>
+    {% endfor %}
+{% endif %}
+{% if solar_data.flares_second and solar_data.flares_count_second > 0 %}
+    <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
+    {% for key, value in solar_data.flares_second.items %}
+        <div class="flare-card">
+            <p class="mb-1"><strong>Начало:</strong> {{ value.MinorProb }}</p>
+            <p class="mb-1"><strong>Окончание:</strong> {{ value.MajorProb }}</p>
+        </div>
+    {% endfor %}
+{% endif %}
         <div class="mt-4">
             <a href="{% url 'index' %}" class="btn btn-outline-primary">
                 ← Назад к поиску
