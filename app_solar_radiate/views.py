@@ -3,16 +3,11 @@ from app_solar_radiate.forms import DateForm
 from app_solar_radiate.usecase import get_solar_activity_usecase
 from datetime import datetime
 from app_solar_radiate.repo import SolarActivityRepo
-from app_solar_radiate.repo_fake import SolarActivityRepoFake
-from app_solar_radiate.dto import OutDTO
 
 class SolarRepoFactory:
     @staticmethod
     def execute():
-        # Для теста используем фейковый репозиторий
-        return SolarActivityRepoFake()
-        # Для продакшена раскомментировать:
-        #return SolarActivityRepo()
+          return SolarActivityRepo()
 
 def index(request):
     if request.method == 'POST':
@@ -20,10 +15,10 @@ def index(request):
         if form.is_valid():
             selected_date = form.cleaned_data['selected_date']
             selected_datetime = datetime.combine(selected_date, datetime.min.time())
-            repo_construct = SolarRepoFactory()
+            repo = SolarRepoFactory.execute()
             solar_data_dto = get_solar_activity_usecase(
                 selected_datetime,
-                repo_construct.execute()
+                repo
             )
 
             context = {
@@ -31,7 +26,6 @@ def index(request):
                 'solar_data': solar_data_dto,
                 'selected_date': selected_date,
             }
-            print(solar_data_dto)
             return render(request, 'result.html', context)
     else:
         form = DateForm()

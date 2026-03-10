@@ -36,6 +36,14 @@
         .dict-key {
             font-weight: bold;
         }
+        .status-high {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .status-low {
+            color: #5cb85c;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +58,12 @@
             </div>
             <h1>Результаты поиска</h1>
             <p class="lead">Дата: <strong>{{ selected_date|date:"d.m.Y" }}</strong></p>
+            <p>
+                Статус активности:
+                <span class="{% if solar_data.status == 'high' %}status-high{% else %}status-low{% endif %}">
+                    {{ solar_data.status }}
+                </span>
+            </p>
         </div>
 
         <div class="alert
@@ -60,9 +74,9 @@
             {% endif %}">
             <h4 class="alert-heading">
                 {% if solar_data.has_data %}
-                    Найдено {{ solar_data.flares_count_second }} солнечных вспышек
+                    {{ solar_data.message }}
                 {% else %}
-                    Нет данных за выбранную дату
+                    {{ solar_data.message|default:"Нет данных за выбранную дату" }}
                 {% endif %}
             </h4>
             {% if solar_data.date %}
@@ -71,7 +85,7 @@
         </div>
 
         {% if solar_data.flares_second %}
-            <h3 class="mt-4 mb-3">Солнечные вспышки:</h3>
+            <h3 class="mt-4 mb-3">Детали солнечных вспышек:</h3>
             {% if solar_data.flares_second.items %}
                 {# flares_second — словарь верхнего уровня #}
                 {% for key, value in solar_data.flares_second.items %}
@@ -94,7 +108,7 @@
                         {% endif %}
                     </div>
                 {% empty %}
-                    <p class="no-flares">Нет данных о вспышках</p>
+                    <p class="no-flares">Нет детальных данных о вспышках</p>
                 {% endfor %}
             {% endif %}
         {% endif %}
