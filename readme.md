@@ -14,6 +14,11 @@
 
 ## Внешний вид приложения
 
+ ### Начальная страница с выбором даты
 <img src=templates/img/ScreenshotСолнечнаяактивность.png/>
+
+ ### Страница с ответом первого API
 <img src=templates/img/ScreenshotСолнечнаяактивность1.png/>
+
+ ### Страница с ответом второго API
 <img src=templates/img/ScreenshotСолнечнаяактивность2.png/>
